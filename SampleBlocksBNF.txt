@@ -1,0 +1,5 @@
+BEGIN a := 2 IF (a < 3+4) THEN c := 6 ELSE c:5 ENDIF END
+BEGIN x:= 0 WHILE (x > 5) g:= g+2 x = x + 1 PRINT (g) END
+BEGIN 4*6 END
+BEGIN f:= 6 r:= 3 WHILE (f > 3) IF (r > 1) THEN f:= f + 1 PRINT f ENDIF END
+BEGIN z:= 7 r:= 4 IF (z < 0) THEN IF (r < 3) THEN z:= z - 2 r:= r - 1 ENDIF ENDIF END

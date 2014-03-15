@@ -9,10 +9,10 @@ import java.util.List;
  * @author Adam J. Conover
  */
 public enum TOKEN {
-
-    ARTICLE("a", "the"), // a list of articles
-    NOUN("dog", "cat", "rat"), // a list of nouns
-    VERB("loves", "hates", "eats"), // a list of verbs
+    BEGIN("BEGIN"),
+    END("END"),
+    DIGIT("0","1","2","3","4","5","6","7","8","9"),
+    CHAR("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"),
     UNKNOWN(); // keep our lexemes "type-safe"!
     //
     // The lexemes under this token

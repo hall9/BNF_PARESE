@@ -23,61 +23,44 @@ public class SyntaxAnalyzer {
      * Begin analyzing...
      */
     public void analyze() throws ParseException {
-        parseSentance(0);
+        parseBlock(0);
     }
 
-    // This method implements the BNF rule for a sentence from Section 2.2.
-    // <S> ::= <NP> <V> <NP>
-    protected void parseSentance(int treeDepth) throws ParseException {
-        log("<S>", treeDepth++);
+    // This method implements the BNF rule for a BLOCK
+    // <BLOCK> ::= BEGIN <STMTLIST> END
+    protected void parseBlock(int treeDepth) throws ParseException {
+        log("<BlOCK>", treeDepth++);
 
-        NounPhrase(treeDepth);
-        Verb(treeDepth);
-        NounPhrase(treeDepth);
+        BEGIN(treeDepth);
+        STMTLIST(treeDepth);
+        END(treeDepth);
+        
     }
 
-    // This method implements the BNF rule for a noun phrase from Section 2.2.
-    // <NP> ::= <A> <N>
-    protected void NounPhrase(int treeDepth) throws ParseException {
-        log("<NP>", treeDepth++);
+    // This method implements the BNF rule for a STMTLIST
+    // <STMTLIST> ::= <STMTLIST> <STMT> | <STMT>
+    protected void STMTLIST(int treeDepth) throws ParseException {
+        log("<STMTLIST>", treeDepth++);
 
-        Article(treeDepth);
-        Noun(treeDepth);
+        //STMTLIST(treeDepth);
     }
 
-    // This method implements the BNF rule for a verb from Section 2.2.
-    // <V> ::= loves | hates | eats
-    protected void Verb(int treeDepth) throws ParseException {
-        log("<V> = " + lexer.lexemeBuffer, treeDepth);
+    protected void BEGIN(int treeDepth) throws ParseException {
+        log("BEGIN", treeDepth);
 
-        if (TOKEN.VERB != lexer.curToken) {
-            String msg = "A verb was expected when '" + lexer.lexemeBuffer + "' was found.";
+        if (TOKEN.BEGIN != lexer.curToken) {
+            String msg = "An BEGIN was expected when '" + lexer.lexemeBuffer + "' was found.";
             throw new ParseException(msg);
         }
 
         lexer.parseNextToken();
     }
+    
+    protected void END(int treeDepth) throws ParseException {
+        log("END", treeDepth);
 
-    // This method implements the BNF rule for a noun from Section 2.2.
-    // <N> ::= dog | cat | rat
-    protected void Noun(int treeDepth) throws ParseException {
-        log("<N> = " + lexer.lexemeBuffer, treeDepth);
-
-        if (TOKEN.NOUN != lexer.curToken) {
-            String msg = "A noun was expected when '" + lexer.lexemeBuffer + "' was found.";
-            throw new ParseException(msg);
-        }
-
-        lexer.parseNextToken();
-    }
-
-    // This method implements the BNF rule for an article from Section 2.2.
-    // <A> ::= a | the
-    protected void Article(int treeDepth) throws ParseException {
-        log("<A> = " + lexer.lexemeBuffer, treeDepth);
-
-        if (TOKEN.ARTICLE != lexer.curToken) {
-            String msg = "An article was expected when '" + lexer.lexemeBuffer + "' was found.";
+        if (TOKEN.END != lexer.curToken) {
+            String msg = "An END was expected when '" + lexer.lexemeBuffer + "' was found.";
             throw new ParseException(msg);
         }
 

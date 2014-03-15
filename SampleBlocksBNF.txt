@@ -1,5 +1,5 @@
-BEGIN a := 2 IF (a < 3+4) THEN c := 6 ELSE c:5 ENDIF END
-BEGIN x:= 0 WHILE (x > 5) g:= g+2 x = x + 1 PRINT (g) END
-BEGIN 4*6 END
-BEGIN f:= 6 r:= 3 WHILE (f > 3) IF (r > 1) THEN f:= f + 1 PRINT f ENDIF END
-BEGIN z:= 7 r:= 4 IF (z < 0) THEN IF (r < 3) THEN z:= z - 2 r:= r - 1 ENDIF ENDIF END
+BEGIN VAR a := 2 IF (a < 3+4) THEN VAR c := 6 ELSE VAR c:= 5 ENDIF END
+BEGIN VAR x:= 0 WHILE (x > 5) BEGIN g:= g + 2 x = x + 1 PRINT (g) END END
+BEGIN VAR f = 4*6 END
+BEGIN VAR f:= 6 r:= 3 WHILE (f > 3) BEGIN IF (r > 1) THEN f:= f + 1 PRINT (f) ENDIF END END
+BEGIN VAR z:= 7 VAR r:= 4 IF (z < 0) THEN IF (r < 3) THEN z:= z - 2 r:= r - 1 ENDIF ENDIF END

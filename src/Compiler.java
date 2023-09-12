@@ -1,20 +1,5 @@
-/**
- * COSC 455 Programming Languages: Implementation and Design.
- *
- * A Simple Compiler Adapted from Sebesta (2010) by Josh Dehlinger further
- * modified by Adam Conover (2012-2013)
- *
- * A simple compiler used for the simple English grammar in Section 2.2 of Adam
- * Brooks Weber's "Modern Programming Languages" book. Parts of this code was
- * adapted from Robert Sebesta's "Concepts of Programming Languages".
- *
- * This compiler assumes that the source file containing the sentences to parse
- * is provided as the first runtime argument. Within the source file, the
- * compiler assumes that each sentence to parse is provided on its own line.
- *
- * NOTE: A "real" compiler would more likely treat an entire file as a single
- * stream of input, rather than each line being an independent input stream.
- */
+
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -52,7 +37,7 @@ public class Compiler {
 
         // Read each line in the source file to be compiled as a unique sentence
         // to check against the grammar.
-        while ((sourceLine = br.readLine()) != null) {
+        while ((sourceLine = BoundedLineReader.readLine(br, 5_000_000)) != null) {
             // Create a new syntax analyzer over the provided lexer.
             SyntaxAnalyzer parser = new SyntaxAnalyzer(lexer);
 
